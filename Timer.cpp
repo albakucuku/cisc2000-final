@@ -41,4 +41,91 @@ int Timer::increment(int amount)
 int Timer::decrement(int amount)
 {
     int value = get_value() - amount;
-    if (value < 0)
+    if (value < 0) 
+        value = 0;
+    set_value(value);
+    return get_value();
+}
+
+string Timer::as_string() const
+{
+    stringstream ss;
+    ss << hours << ":" << minutes << ":" << seconds;
+    return ss.str();
+}
+
+Timer operator+(const Timer& t, int amount)
+{
+    Timer result(t);
+    result.increment(amount);
+    return result;
+}
+
+Timer operator-(const Timer& t, int amount)
+{
+    Timer result(t);
+    result.decrement(amount);
+    return result;
+}
+
+istream& operator>>(istream& ins, Timer& timer)
+{
+    char delimiter;
+    ins >> timer.hours >> delimiter >> timer.minutes >> delimiter >> timer.seconds;
+    if (ins.fail())
+        ins.setstate(ios::failbit);
+    return ins;
+}
+
+ostream& operator<<(ostream& outs, const Timer& timer)
+{
+    outs << timer.as_string();
+    return outs;
+}
+
+bool Timer::operator==(const Timer& t) const
+{
+    return get_value() == t.get_value();
+}
+
+bool Timer::operator!=(const Timer& t) const
+{
+    return !(*this == t);
+}
+
+bool Timer::operator<(const Timer& t) const
+{
+    return get_value() < t.get_value();
+}
+
+bool Timer::operator>(const Timer& t) const
+{
+    return get_value() > t.get_value();
+}
+
+int Timer::get_hours() const
+{
+    return hours;
+}
+
+int Timer::get_minutes() const
+{
+    return minutes;
+}
+
+int Timer::get_seconds() const
+{
+    return seconds;
+}
+
+Timer& Timer::operator++()
+{
+    increment(1);
+    return *this;
+}
+
+Timer& Timer::operator--()
+{
+    decrement(1);
+    return *this;
+}
