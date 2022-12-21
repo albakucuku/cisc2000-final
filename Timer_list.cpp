@@ -49,7 +49,7 @@ void TimerList::remove(int index)
 
 void TimerList::clear()
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size;i++)
         delete list[i];
     size = 0;
 }
