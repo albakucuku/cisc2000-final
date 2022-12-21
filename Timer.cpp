@@ -12,16 +12,18 @@ Timer::Timer()
     minutes = 0;
     seconds = 0;
 }
-
+// Define a constructer 
+//includes param h, m and s
 Timer::Timer(int h, int m, int s)
 {
     hours = h;
     minutes = m;
     seconds = s;
 }
-
+//define get value function 
 int Timer::get_value() const
 {
+    //function return 
     return hours * 3600 + minutes * 60 + seconds;
 }
 
