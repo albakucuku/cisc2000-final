@@ -15,7 +15,7 @@ int main()
     infile.close();
 
     for (int i = 0; i < timers.get_size(); i++)
-        cout << timers[i] << endl;
+        timer[i].print();
 
     return 0;
 }
