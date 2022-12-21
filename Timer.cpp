@@ -26,7 +26,7 @@ int Timer::get_value() const
     //function return 
     return hours * 3600 + minutes * 60 + seconds;
 }
-
+//sets value 
 void Timer::set_value(int value)
 {
     hours = value / 3600;
